@@ -1,0 +1,37 @@
+#!/usr/bin/perl
+use Net::Telnet ();
+#$t = new Net::Telnet (Timeout => 60,
+#                      Prompt => '/>/',
+#                      input_log => "/var/log/swi_in.log");
+#$t->open("10.111.176.2");
+#$t->login("admin", "!rfhfynby!");
+#$t->waitfor('/>/');
+#$t->cmd("enable");
+#$t->cmd("onu");
+#@lines = $t->cmd("help");
+#print @lines;
+
+
+########################
+$ip    = $ARGV[0];
+$username = 'admin';
+$passwd = '!rfhfynby!';
+
+$t = new Net::Telnet(
+    Timeout => 20,
+    Prompt => '/Radujniy.*$/',
+    input_log => "/var/log/swi_in.log",
+    );
+$t->open($ip);
+$t->login($username, $passwd);
+#$t->waitfor('/*PON*$/');
+$t->cmd("enable");
+#$t->cmd("onu");
+#$t->waitfor('/#/');
+#$t->cmd("exit");
+@lines = $t->cmd("onu");
+print @lines;
+#$t->cmd("ip route $ip 255.255.255.255 vlan $vlanid");
+#$t->cmd("mac address-table static $mac vlan $vlanid interface port-channel 1" );
+#$t->cmd("exit");
+#$t->cmd("wr");

@@ -1,0 +1,9 @@
+#!/bin/bash
+#echo '<table cellSpacing=0 bordercolor=#3399cc width="100%" border=1>'
+#echo '<tr bgcolor=#b6dcee><td><b>Date</b></td><td><b>Quantity</b></td><td><b>Cisco Core Port</b></td><td><b>MAC</b></td><td><b>VLAN</b></td><td><b>IP</b></td></tr>'
+cat /media/data/syslog/all/192.168.11.134.log | grep 'drop message on untrusted port' | awk '{print $22}' | sort -u | while  read mac
+do 
+ num=`cat /media/data/syslog/all/192.168.11.134.log | grep $mac | wc -l`
+ cat /media/data/syslog/all/192.168.11.134.log | grep $mac | tail -n 1 | awk -v num=$num '{ print "<tr><td>"$1" "$2" "$3"</td><td>"num"</td><td>"$16"</td><td>"$22"</td><td>"$24"</td><td>"$27"</td></tr>"}' | sort -n | tr -d ','
+done
+#echo "</table>"    

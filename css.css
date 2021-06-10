@@ -1,0 +1,65 @@
+input, SELECT, TEXTAREA {
+	background: #FFFFFF;
+	border: 2px solid #C2D3DF;
+	font-family: Arial, Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #003366;
+}
+td, p, ul, input, textarea { font: 10pt verdana,arial,sans-serif; color: #003366 }
+
+.toptext { font: italic bold 9pt arial,sans-serif; color: #555555; text-align: right; padding: 15px 5px 0 0 }
+
+.norep { background-repeat: no-repeat }
+
+.botline { font-size: 8pt; color: #3399CC; text-decoration: none }
+
+.announce { padding: 5px 10px 10px 20px; margin-bottom: 0px; text-align: right }
+.announce2 { padding: 5px 10px 10px 10px; margin-bottom: 0px }
+
+.button {
+	BACKGROUND: url(im/buttonbg.gif) #fff repeat-x; CURSOR: pointer; COLOR: #447793; BORDER-LEFT: #c4e35f 3px solid
+}
+
+
+a.mnav { font: 8pt verdana,arial,helvetica,sans-serif; color: #3399CC; text-align: center; text-decoration: none }
+a.mnav:visited: { color: #3399CC }
+
+
+#now { border: 1px solid #3399CC; font-weight: bold;
+       background: #E7F6FD  url("images/back3.gif") }
+
+
+a.subnav { font: bold 9pt verdana,helvetica,arial,sans-serif; color: #3399CC; text-align: right; text-decoration: none;  margin: 3px }
+
+a.left { color: #0099CC; text-decoration: none; font-weight: bold }
+a.left:hover { color: #0099CC; text-decoration: underline }
+a.left:visited { color: #0099CC }
+
+a { color: #0066CC; text-decoration: none}
+a:hover { color: #0066CC; text-decoration: underline }
+a:visited { color: #0066CC }
+
+
+#now2 { border: 1px solid #3399CC; background-color: #F0FAFF }
+
+a.news { color: black; text-decoration: none }
+
+strong { font-weight: bold }
+
+.sm { font-size: 8pt; width: 140px }
+
+.quote { text-align: right; font-size: 8pt; font-style: italic; padding: 10px 10px 0 0 }
+
+.leftcol { padding: 0px 10px }
+
+.pr { background-color: #D3ECF8; padding: 0px 15px }
+#alrt { text-align: right; padding-right: 20px }
+.header { background-color: #99CCE5; font-weight: bold; padding-left: 10px }
+.pack { background-color: #CFE8F3; padding-left: 10px }
+.norm { font-weight: normal }
+.nopadd { background-color: white; padding: 0px }
+#blu { background-color: #D3ECF8 }
+
+th { font: bold 9pt verdana,arial,sans-serif; color: white }
+
+a.subnav2 { font: bold 8pt verdana,helvetica,arial,sans-serif; color: #3399CC; text-align: right; text-decoration: none;  margin: 3px 3px 3px 13px }

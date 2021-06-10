@@ -1,0 +1,10 @@
+PHP-NMAP
+--------
+Ideally, you should be able to unpackage php-nmap-xx.yy.tar.gz, edit index.php, and copy it someplace in your documentroot path. You need to have a webserver and PHP installed. You will also need nmap (http://www.insecure.org/nmap/) installed.
+
+You will need to suid root nmap if you wish for web users to be able to use the Stealth Scans.
+
+You REALLY SHOULD htpasswd php-nmap. When you get threatening emails from the University of California and the DoD because someone used your install of php-nmap to attack them, don't say I didn't tell you so!
+
+If you have comments or suggestions, feel free to email me.
+-- morgan -at- morcant.com

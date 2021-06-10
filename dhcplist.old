@@ -1,0 +1,77 @@
+<?php
+include "header.php";
+?>
+<TABLE cellSpacing=1 cellPadding=2 width="100%" border=0 bgcolor="#FFFFFF">
+<TBODY>
+<TR>
+<TD>
+<CENTER><B><a href="dhcplist.php">DHCP servers finder</a></B></CENTER><BR>
+
+<form action="dhcplist.php" method="get">
+<p>
+   Vlan ID:<input type="text" name="vlan" size="4" maxlength="4" value="">
+  <input type="submit" name="search" value="DHCP search"/></p>
+</form>
+
+<PRE>
+<?php
+if(isset($_GET['search'])) { 
+ require_once ("PHPTelnet.php");
+
+# Spisok Vlan ID S arp inspection !!! #
+ $all = array("2", "3", "4", "5", "6", "7", "8", "10", "12", "13", "14", "15", "16", "17", "18", "23", "24", "25", "26", "27", "29", "30", "32", "35", "38", "39", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "71", "72", "73", "74", "75", "77", "78", "79", "80", "81", "82", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "101", "102", "103", "120", "125", "138", "150", "180", "181", "185", "187", "190", "192", "193", "197", "198", "199", "200", "221", "222", "223", "224", "225", "226", "228", "410", "420", "430", "440", "700");
+
+# Spisok Vlan ID BEZ arp inspection !!! #
+ $rad = array("11", "211", "160", "161", "162","163", "164","165", "166", "167", "168", "169", "170", "171", "171", "172", "173", "174", "175", "176", "177", "178", "179");
+ $vlan = $_GET['vlan'];
+
+#  if (!in_array("$vlan", $ignor)) {
+   if (in_array("$vlan", $all) or in_array("$vlan", $rad)) {
+   if (!in_array("$vlan", $rad)) {
+	$Telnet = new PHPTelnet();
+	$result = $Telnet->Connect("192.168.11.134", "cron", "!rfhfynby!");
+	switch ($result) {
+	    case 0:
+	    $Telnet->DoCommand("configure terminal");
+	    $Telnet->DoCommand("no ip arp inspection vlan $vlan");
+	    $Telnet->DoCommand("no ip dhcp snooping vlan $vlan");
+	    $Telnet->DoCommand("exit");
+	    $Telnet->DoCommand("exit");
+	    break;
+
+	}
+	$Telnet->Disconnect();
+    echo "<b>arp inspection OFF</b><br>";    
+    }
+   echo "<b>DHCP servers in vlan $vlan</b><br>";  
+   passthru ("sudo /usr/local/sbin/dhcdrop -t -i eth1.$vlan -l 00:02:17:72:98:00 -l 00:12:DA:27:AE:4A -l 00:0B:45:6D:6C:0A -l 00:0A:8B:BC:30:4A -l 00:11:BC:34:CB:CA -l 00:0C:86:A1:11:0A -l 00:0C:CF:40:10:4A -l 00:14:69:12:B6:42 -l 00:14:69:12:B6:43 -l 00:14:69:12:B6:44 -l 00:14:69:12:B6:45");
+
+   if (!in_array("$vlan", $rad)) {
+	$Telnet = new PHPTelnet();
+	$result = $Telnet->Connect("192.168.11.134", "cron", "!rfhfynby!");
+	switch ($result) {
+	    case 0:
+	    $Telnet->DoCommand("configure terminal");
+	    $Telnet->DoCommand("ip arp inspection vlan $vlan");
+	    $Telnet->DoCommand("ip dhcp snooping vlan $vlan");
+	    $Telnet->DoCommand("exit");
+	    $Telnet->DoCommand("exit");
+	    break;
+	}
+	$Telnet->Disconnect();
+    echo "<b>arp inspection ON</b><br>";
+    }
+
+ }else{ echo "<b>Wrong vlan ID</b><br>";}
+
+}
+
+?>
+
+</PRE>
+</TBODY></TABLE>
+
+<?php
+include "footer.php";
+?>
+
